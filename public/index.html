@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Heythan AI</title>
+
+<!-- Fonte estilo ChatGPT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Inter", Arial;
+  background: #0b0f19;
+  color: white;
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+#sidebar {
+  width: 240px;
+  background: #0a0f1c;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1f2937;
+}
+
+.menu {
+  padding: 12px;
+  margin: 5px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #111827;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.menu:hover {
+  background: #2563eb;
+}
+
+/* MAIN */
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOP */
+#topbar {
+  padding: 12px;
+  background: #0a0f1c;
+  font-size: 13px;
+  color: #94a3b8;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* CHAT */
+#chat {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.user {
+  color: #60a5fa;
+  margin: 10px 0;
+}
+
+.ia {
+  color: #e5e7eb;
+  margin: 10px 0;
+}
+
+/* INPUT */
+#inputArea {
+  display: flex;
+  padding: 12px;
+  background: #0a0f1c;
+  border-top: 1px solid #1f2937;
+}
+
+input {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  outline: none;
+}
+
+button {
+  margin-left: 10px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="menu">➕ Novo Chat</div>
+  <div class="menu">🔎 Pesquisar</div>
+  <div class="menu">📚 Biblioteca</div>
+  <div class="menu">📁 ProjectoA</div>
+  <div class="menu">📱 Apps</div>
+  <div class="menu">🎓 CENFOTEP</div>
+  <div class="menu">⋯ Mais</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+<div id="topbar">
+Heythan AI • Interface estilo ChatGPT, Desenvolvido pelo Cardoso Lemos
+</div>
+
+<div id="chat"></div>
+
+<div id="inputArea">
+  <input id="input" placeholder="Escreve a tua pergunta..." />
+  <button onclick="enviar()">Enviar</button>
+</div>
+
+</div>
+
+<script>
+
+async function enviar() {
+  const input = document.getElementById("input");
+  const chat = document.getElementById("chat");
+
+  const pergunta = input.value.trim();
+  if (!pergunta) return;
+
+  chat.innerHTML += `<div class="user">👤 Tu: ${pergunta}</div>`;
+  input.value = "";
+
+  let respostaIA = "";
+
+  // 🔥 RESPOSTA FIXA PARA "QUEM CRIOU"
+  if (pergunta.toLowerCase().includes("quem criou")) {
+    respostaIA = "🤖 Eu fui criado por Cardoso Lemos, desenvolvedor Web. Ele é o responsável pelo desenvolvimento deste sistema de IA.";
+  } else {
+    try {
+      const res = await fetch("http://127.0.0.1:3000/perguntar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pergunta })
+      });
+
+      const data = await res.json();
+      respostaIA = data.resposta;
+
+    } catch (err) {
+      respostaIA = "Erro ao conectar na IA";
+    }
+  }
+
+  chat.innerHTML += `<div class="ia">🤖 IA: ${respostaIA}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>
