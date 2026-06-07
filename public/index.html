@@ -97,6 +97,7 @@ button:hover {
 
   body {
     flex-direction: column;
+    font-size: 18px; /* 🔥 aumenta o texto no telemóvel */
   }
 
   #sidebar {
@@ -110,18 +111,41 @@ button:hover {
   .menu {
     flex: 1;
     text-align: center;
-    font-size: 12px;
-    padding: 10px;
+    font-size: 14px; /* 🔥 menus maiores */
+    padding: 12px;
     white-space: nowrap;
   }
 
+  #topbar {
+    font-size: 14px;
+    padding: 10px;
+  }
+
   #chat {
-    padding: 12px;
+    flex: 1;
+    padding: 16px;
+    font-size: 18px; /* 🔥 mensagens maiores */
+    overflow-y: auto;
+  }
+
+  .user, .ia {
+    font-size: 18px;
+    line-height: 1.4;
   }
 
   #inputArea {
     position: sticky;
     bottom: 0;
+    padding: 10px;
+  }
+
+  input {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  button {
+    font-size: 16px;
   }
 }
 </style>
