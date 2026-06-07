@@ -27,20 +27,6 @@ body {
   border-right: 1px solid #1f2937;
 }
 
-.menu {
-  padding: 12px;
-  margin: 5px 0;
-  border-radius: 10px;
-  cursor: pointer;
-  background: #111827;
-  transition: 0.2s;
-  font-size: 14px;
-}
-
-.menu:hover {
-  background: #2563eb;
-}
-
 /* MAIN */
 #main {
   flex: 1;
@@ -74,7 +60,7 @@ body {
   margin: 10px 0;
 }
 
-/* INPUT */
+/* INPUT FIXO */
 #inputArea {
   display: flex;
   padding: 12px;
@@ -104,6 +90,39 @@ button {
 
 button:hover {
   background: #1d4ed8;
+}
+
+/* 🔥 RESPONSIVO PARA TELEFONE */
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .menu {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  #chat {
+    padding: 12px;
+  }
+
+  #inputArea {
+    position: sticky;
+    bottom: 0;
+  }
 }
 </style>
 </head>
