@@ -57,7 +57,7 @@ body {
   border-bottom: 1px solid #1f2937;
 }
 
-/* CHAT (WHATSAPP STYLE) */
+/* CHAT AREA */
 #chat {
   flex: 1;
   padding: 12px;
@@ -67,7 +67,7 @@ body {
   gap: 10px;
 }
 
-/* BOLHAS */
+/* BOLHAS STYLE (WhatsApp) */
 .user, .ia {
   max-width: 80%;
   padding: 10px 14px;
@@ -93,36 +93,44 @@ body {
   border-bottom-left-radius: 4px;
 }
 
-/* INPUT FIXO */
+/* INPUT AREA FIXO */
 #inputArea {
   display: flex;
-  padding: 10px;
+  padding: 6px;
   background: #0a0f1c;
   border-top: 1px solid #1f2937;
   position: sticky;
   bottom: 0;
   gap: 8px;
+  align-items: center;
 }
 
+/* INPUT MENOR E LIMPO */
 input {
   flex: 1;
-  padding: 14px;
+  height: 42px;
+  padding: 0 12px;
   border: 1px solid #1f2937;
   border-radius: 10px;
   background: #111827;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   outline: none;
 }
 
+/* BOTÃO GRANDE E BONITO */
 button {
-  padding: 12px 18px;
+  height: 42px;
+  padding: 0 16px;
   border: none;
   border-radius: 10px;
   background: #2563eb;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button:hover {
@@ -145,6 +153,7 @@ button:hover {
 
   #chat {
     padding: 10px;
+    height: calc(100vh - 120px);
   }
 
   .user, .ia {
@@ -157,7 +166,11 @@ button:hover {
   }
 
   button {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  #inputArea {
+    padding: 6px;
   }
 }
 </style>
