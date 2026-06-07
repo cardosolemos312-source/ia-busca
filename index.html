@@ -2,38 +2,42 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Heythan AI</title>
 
-<!-- Fonte estilo ChatGPT -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: "Inter", Arial;
   background: #0b0f19;
   color: white;
   display: flex;
   height: 100vh;
-  font-size: 16px;
 }
 
 /* SIDEBAR */
 #sidebar {
-  width: 260px;
+  width: 240px;
   background: #0a0f1c;
-  padding: 12px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #1f2937;
 }
 
 .menu {
-  padding: 12px;
-  margin: 5px 0;
-  border-radius: 10px;
+  padding: 10px;
+  margin: 4px 0;
+  border-radius: 8px;
   cursor: pointer;
   background: #111827;
+  transition: 0.2s;
   font-size: 14px;
 }
 
@@ -46,100 +50,80 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
-/* TOPBAR */
+/* TOP */
 #topbar {
-  padding: 12px;
+  padding: 10px;
   background: #0a0f1c;
-  font-size: 14px;
+  font-size: 12px;
   color: #94a3b8;
   border-bottom: 1px solid #1f2937;
 }
 
-/* CHAT AREA */
+/* CHAT */
 #chat {
   flex: 1;
-  padding: 12px;
+  padding: 15px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
-/* BOLHAS STYLE (WhatsApp) */
-.user, .ia {
-  max-width: 80%;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 15px;
-  line-height: 1.4;
-  word-wrap: break-word;
-}
-
-/* USER (direita) */
 .user {
-  background: #2563eb;
-  color: white;
-  align-self: flex-end;
-  border-bottom-right-radius: 4px;
+  color: #60a5fa;
+  margin: 6px 0;
+  background: #111827;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
 }
 
-/* IA (esquerda) */
 .ia {
-  background: #1f2937;
   color: #e5e7eb;
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
+  margin: 6px 0;
+  background: #0f172a;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
 }
 
-/* INPUT AREA FIXO */
+/* INPUT */
 #inputArea {
   display: flex;
-  padding: 6px;
+  padding: 10px;
   background: #0a0f1c;
   border-top: 1px solid #1f2937;
-  position: sticky;
-  bottom: 0;
   gap: 8px;
-  align-items: center;
 }
 
-/* INPUT MENOR E LIMPO */
 input {
   flex: 1;
-  height: 42px;
-  padding: 0 12px;
+  padding: 12px;
   border: 1px solid #1f2937;
   border-radius: 10px;
   background: #111827;
   color: white;
-  font-size: 15px;
   outline: none;
+  font-size: 14px;
 }
 
-/* BOTÃO GRANDE E BONITO */
 button {
-  height: 42px;
-  padding: 0 16px;
+  padding: 12px 16px;
   border: none;
   border-radius: 10px;
   background: #2563eb;
   color: white;
-  font-size: 14px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 14px;
+  min-width: 90px;
 }
 
 button:hover {
   background: #1d4ed8;
 }
 
-/* 🔥 MOBILE CHATGPT STYLE */
-@media (max-width: 100px) {
-
+/* RESPONSIVO (TELEMÓVEL) */
+@media (max-width: 768px) {
   body {
     flex-direction: column;
   }
@@ -148,29 +132,25 @@ button:hover {
     width: 100%;
     flex-direction: row;
     overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .menu {
+    flex: 0 0 auto;
     white-space: nowrap;
   }
 
   #chat {
     padding: 10px;
-    height: calc(100vh - 120px);
   }
 
   .user, .ia {
-    max-width: 90%;
-    font-size: 16px;
-  }
-
-  input {
-    font-size: 16px;
+    max-width: 100%;
   }
 
   button {
-    font-size: 14px;
-  }
-
-  #inputArea {
-    padding: 6px;
+    min-width: 70px;
   }
 }
 </style>
@@ -178,7 +158,6 @@ button:hover {
 
 <body>
 
-<!-- SIDEBAR -->
 <div id="sidebar">
   <div class="menu">➕ Novo Chat</div>
   <div class="menu">🔎 Pesquisar</div>
@@ -189,24 +168,22 @@ button:hover {
   <div class="menu">⋯ Mais</div>
 </div>
 
-<!-- MAIN -->
 <div id="main">
 
-<div id="topbar">
-Heythan AI • Desenvolvido pelo Cardoso Lemos
-</div>
+  <div id="topbar">
+    Heythan AI • Interface estilo ChatGPT
+  </div>
 
-<div id="chat"></div>
+  <div id="chat"></div>
 
-<div id="inputArea">
-  <input id="input" placeholder="Escreve a tua pergunta..." />
-  <button onclick="enviar()">Enviar</button>
-</div>
+  <div id="inputArea">
+    <input id="input" placeholder="Escreve a tua pergunta..." />
+    <button onclick="enviar()">Enviar</button>
+  </div>
 
 </div>
 
 <script>
-
 async function enviar() {
   const input = document.getElementById("input");
   const chat = document.getElementById("chat");
@@ -219,9 +196,8 @@ async function enviar() {
 
   let respostaIA = "";
 
-  // 🔥 RESPOSTA FIXA PARA "QUEM CRIOU"
   if (pergunta.toLowerCase().includes("quem criou")) {
-    respostaIA = "🤖 Eu fui criado por Cardoso Lemos, desenvolvedor Web. Ele é o responsável pelo desenvolvimento deste sistema de IA.";
+    respostaIA = "🤖 Fui criado por Cardoso Lemos, desenvolvedor Web.";
   } else {
     try {
       const res = await fetch("http://127.0.0.1:3000/perguntar", {
@@ -232,7 +208,6 @@ async function enviar() {
 
       const data = await res.json();
       respostaIA = data.resposta;
-
     } catch (err) {
       respostaIA = "Erro ao conectar na IA";
     }
@@ -241,7 +216,6 @@ async function enviar() {
   chat.innerHTML += `<div class="ia">🤖 IA: ${respostaIA}</div>`;
   chat.scrollTop = chat.scrollHeight;
 }
-
 </script>
 
 </body>
